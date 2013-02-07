@@ -8,7 +8,7 @@ class Block:
 	size = 512
 	buff = buffer(" ", 0, 0)
 	def write(self, block_start, buff1, buffer_start, num_bytes):
-		if (num_bytes < 512):
+		if (num_bytes < size):
 			buff = buffer(buff1, buffer_start, num_bytes)
 			print buff
 		else:
