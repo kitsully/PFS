@@ -4,10 +4,6 @@
 
 # Block Layer
 
-from array import array
-
-data = []
-
 class Block:
 	size = 512
 	buff = buffer(" ", 0, 0)
