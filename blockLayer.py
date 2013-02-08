@@ -29,9 +29,9 @@ class Block:
 		return 0
 
 
-	def block_size(self):
+	def print_block_content(self):
 		print self.blk
-		return self.block_size
+		return None 
 
 
 b = Block()
@@ -41,11 +41,11 @@ b = Block()
 
 
 # Example of how to write to a block
-b.write(0, "Hello World", 0, 11) 
+b.write(0, "Hello Worl", 0, 10) 
 # b.block_size() # this prints out the whole list the first few spaces should be equal to hello world
 
 
 s = "I think I did it!"
 #b.write(35, s, 0, 17)
 
-b.block_size()
+b.print_block_content()
