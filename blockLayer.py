@@ -6,11 +6,12 @@
 
 class Block:
 	size = 512
-	buff = buffer(" ", 0, 0)
+	blk = buffer(" ", 0, 0)
 	def write(self, block_start, buff1, buffer_start, num_bytes):
-		if (num_bytes < size):
+		if (num_bytes < self.size):
 			buff = buffer(buff1, buffer_start, num_bytes)
-			print buff
+			self.blk = buffer(buff1, block_start, self.size)
+			#print self.blk
 		else:
 			print "error"
 		return 0
@@ -22,7 +23,7 @@ class Block:
 
 
 	def block_size(self):
-		print "hello"
+		print self.blk
 		return self.block_size
 
 
@@ -34,3 +35,4 @@ b = Block()
 
 # Example of how to write to a block
 b.write(0, "Hello World", 7, 511)
+b.block_size()
