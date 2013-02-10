@@ -6,7 +6,7 @@
 
 class Block:
 	size = 512
-	blk = ["0"] * 512  # This creates a list with 512 spaces 
+	blk = [""] * 512  # This creates a list with 512 spaces 
 	def write(self, block_start, buff1, buffer_start, num_bytes):
 		buf_i = buffer_start 
 		for i in range(block_start, block_start + num_bytes): 
@@ -24,11 +24,17 @@ class Block:
 		return 1 # return failure by default
 
 
-	def read(block_start, buffer, buffer_start, num_bytes):
-		print "Test"
-		return 0
+	def read(self, block_start, buff1, buffer_start, num_bytes):
+		buf_i = buffer_start
+		for i in range(block_start, block_start + num_bytes):
+			if (self.blk[buf_i] != ""):
+				buff1 += self.blk[buf_i] #
+				i += 1
+				buf_i += 1
+		return buff1
 
 
+	# Prints the entire block for testing purposes
 	def print_block_content(self):
 		print self.blk
 		return None 
@@ -38,6 +44,7 @@ b = Block()
 
 
 
+r = ""
 
 
 # Example of how to write to a block
@@ -48,4 +55,9 @@ b.write(0, "Hello Worl", 0, 10)
 s = "I think I did it!"
 #b.write(35, s, 0, 17)
 
-b.print_block_content()
+r = b.read(0, r, 2, 10)
+
+print r
+
+
+#b.print_block_content()
