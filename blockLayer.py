@@ -26,11 +26,14 @@ class Block:
 
 	def read(self, block_start, buff1, buffer_start, num_bytes):
 		buf_i = buffer_start
-		for i in range(block_start, block_start + num_bytes):
-			if (self.blk[buf_i] != ""): # checks to make sure the spot in block isn't empty see change on line 9
-				buff1 += self.blk[buf_i] # appends the character in the block to the string
-				i += 1
-				buf_i += 1
+		if (num_bytes < self.size):
+			for i in range(block_start, block_start + num_bytes):
+				if (self.blk[buf_i] != ""): # checks to make sure the spot in block isn't empty see change on line 9
+					buff1 += self.blk[buf_i] # appends the character in the block to the string
+					i += 1
+					buf_i += 1
+		else:
+			return buff1   
 		return buff1 # returns what has been read in from the block
 
 
@@ -50,7 +53,7 @@ b.write(0, "Hello Worl", 0, 10) # writes Hello Worl to the block
 # s = "I think I did it!"
 # b.write(35, s, 0, 17)
 
-r = b.read(0, r, 2, 10) # reads the content of the block starting at the second character
+r = b.read(0, r, 2, 511) # reads the content of the block starting at the second character
 
 print r # prints the data that was read 
 
