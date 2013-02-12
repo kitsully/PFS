@@ -12,7 +12,7 @@ free_list[5] = 1
 class Block:
 	size = 0
 	max_capacity = 512
-	blk = [""] * 512  # This creates a list with 512 spaces 
+	blk = ['_'] * 512  # This creates a list with 512 spaces 
 	def write(self, block_start, buff1, buffer_start, num_bytes):
 		buf_i = buffer_start 
 		for i in range(block_start, block_start + num_bytes): 
@@ -20,25 +20,26 @@ class Block:
 			if(i < self.max_capacity):
 				self.blk[i] = buff1[buf_i]
 			else:
+				self.size = i + 1
 				return 1 # failure if full text was not written
 			# Checks for index out of bound problem
 			if(buf_i < num_bytes): 
 				buf_i += 1
 			else:
+				self.size = i + 1
 				return 0 # success
 			i += 1
+		self.size = i + 1
 		return 1 # return failure by default
 
 
 	def read(self, block_start, buff1, buffer_start, num_bytes):
-		buf_i = buffer_start
-		if (num_bytes < self.max_capacity):
-			for i in range(block_start, block_start + num_bytes):
-				buff1 += self.blk[buf_i] # appends the character in the block to the string
-				i += 1
-				buf_i += 1
-		else:
-			return buff1   
+		if ((block_start + num_bytes) > self.max_capacity):
+			return 1 # Failure	
+		for i in range(block_start, block_start + num_bytes):
+			buff1[buffer_start] = self.blk[i]
+			i += 1
+			buffer_start += 1 
 		return buff1 # returns what has been read in from the block
 
 
@@ -78,16 +79,20 @@ def block_number_to_block(num):
 b = Block() # instantiates a block 
 
 # r = "" # declares a string to hold data read from block
+s = "I think I did it!"
+b.write(35, s, 0, 17)
 
+r = [""] * len(s)
 #print get_free_block()
 
 # Example of how to write to a block
 # b.write(0, "Hello Worl", 0, 10) # writes Hello Worl to the block 
-# s = "I think I did it!"
-# b.write(35, s, 0, 17)
+# b.print_block_content()
+r = b.read(35, r, 0, len(s)) # reads the content of the block starting at the second character
 
-# r = b.read(0, r, 2, 511) # reads the content of the block starting at the second character
 
+
+print r
 
 # print b.block_size() # prints the data that was read 
 
