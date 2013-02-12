@@ -4,6 +4,9 @@
 
 # Block Layer
 
+device = [""] * 1000  # device with 1000 blocks
+free_list = [0] * 1000 # a list holding the status of the block free or used
+
 class Block:
 	size = 512
 	blk = [""] * 512  # This creates a list with 512 spaces 
@@ -53,10 +56,18 @@ class Block:
 		return None 
 
 
+"""Finds a free block in the device"""
+def get_free_block():
+	for i in free_list:
+		if (free_list[i] == 0):
+			return free_list[i]
+	return "no free block"
+
 b = Block() # instantiates a block 
 
 # r = "" # declares a string to hold data read from block
 
+print get_free_block()
 
 # Example of how to write to a block
 # b.write(0, "Hello Worl", 0, 10) # writes Hello Worl to the block 
