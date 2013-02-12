@@ -10,13 +10,14 @@ free_list = [0] * 1000 # a list holding the status of the block free or used
 free_list[5] = 1
 
 class Block:
-	size = 512
+	size = 0
+	max_capacity = 512
 	blk = [""] * 512  # This creates a list with 512 spaces 
 	def write(self, block_start, buff1, buffer_start, num_bytes):
 		buf_i = buffer_start 
 		for i in range(block_start, block_start + num_bytes): 
 			# checks if block can be written too
-			if(i < self.size):
+			if(i < self.max_capacity):
 				self.blk[i] = buff1[buf_i]
 			else:
 				return 1 # failure if full text was not written
@@ -31,12 +32,11 @@ class Block:
 
 	def read(self, block_start, buff1, buffer_start, num_bytes):
 		buf_i = buffer_start
-		if (num_bytes < self.size):
+		if (num_bytes < self.max_capacity):
 			for i in range(block_start, block_start + num_bytes):
-				if (self.blk[buf_i] != ""): # checks to make sure the spot in block isn't empty see change on line 9
-					buff1 += self.blk[buf_i] # appends the character in the block to the string
-					i += 1
-					buf_i += 1
+				buff1 += self.blk[buf_i] # appends the character in the block to the string
+				i += 1
+				buf_i += 1
 		else:
 			return buff1   
 		return buff1 # returns what has been read in from the block
@@ -47,9 +47,9 @@ class Block:
 		return self.size
 
 
-	"""Sets the size of the clock"""
+	"""Sets the max_capacity of the clock"""
 	def set_size(self, s):
-		self.size = s
+		self.max_capacity = s
 
 
 	"""This method prints out the entire contents of the bock for testing purposes."""
@@ -69,6 +69,10 @@ def get_free_block():
 """Sets a blocks status to free"""
 def release_block(num):
 	free_list[num] = 0
+
+
+def block_number_to_block(num):
+	return device[num]
 
 
 b = Block() # instantiates a block 
