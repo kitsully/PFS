@@ -37,6 +37,16 @@ class Block:
 		return buff1 # returns what has been read in from the block
 
 
+	"""Returns the size of the block"""
+	def block_size(self):
+		return self.size
+
+
+	"""Sets the size of the clock"""
+	def set_size(self, s):
+		self.size = s
+
+
 	"""This method prints out the entire contents of the bock for testing purposes."""
 	def print_block_content(self):
 		print self.blk
@@ -45,16 +55,17 @@ class Block:
 
 b = Block() # instantiates a block 
 
-r = "" # declares a string to hold data read from block
+# r = "" # declares a string to hold data read from block
 
 
 # Example of how to write to a block
-b.write(0, "Hello Worl", 0, 10) # writes Hello Worl to the block 
+# b.write(0, "Hello Worl", 0, 10) # writes Hello Worl to the block 
 # s = "I think I did it!"
 # b.write(35, s, 0, 17)
 
-r = b.read(0, r, 2, 511) # reads the content of the block starting at the second character
+# r = b.read(0, r, 2, 511) # reads the content of the block starting at the second character
 
-print r # prints the data that was read 
+b.set_size(3)
+print b.block_size() # prints the data that was read 
 
 
