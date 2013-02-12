@@ -7,6 +7,8 @@
 device = [""] * 1000  # device with 1000 blocks
 free_list = [0] * 1000 # a list holding the status of the block free or used
 
+free_list[5] = 1
+
 class Block:
 	size = 512
 	blk = [""] * 512  # This creates a list with 512 spaces 
@@ -63,11 +65,17 @@ def get_free_block():
 			return free_list[i]
 	return "no free block"
 
+
+"""Sets a blocks status to free"""
+def release_block(num):
+	free_list[num] = 0
+
+
 b = Block() # instantiates a block 
 
 # r = "" # declares a string to hold data read from block
 
-print get_free_block()
+#print get_free_block()
 
 # Example of how to write to a block
 # b.write(0, "Hello Worl", 0, 10) # writes Hello Worl to the block 
@@ -76,7 +84,7 @@ print get_free_block()
 
 # r = b.read(0, r, 2, 511) # reads the content of the block starting at the second character
 
-b.set_size(3)
-print b.block_size() # prints the data that was read 
+
+# print b.block_size() # prints the data that was read 
 
 
