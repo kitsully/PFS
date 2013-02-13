@@ -7,7 +7,6 @@
 device_size = 1000
 
 free_list = [0] * device_size  # a list holding the status of the block free or used
-device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
 
 
 class Block:
@@ -69,6 +68,9 @@ def release_block(num):
         print "Already Free"
     else: 
         free_list[num] = 1 
+
+
+device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
 
 
 """Returns the Block at this location in the device"""
