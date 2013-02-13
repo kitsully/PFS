@@ -77,22 +77,22 @@ device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
 def block_number_to_block(num):
     return device[num]
 
-block_num = get_free_block()
-b = block_number_to_block(block_num)
+# block_num = get_free_block()
+# b = block_number_to_block(block_num)
 
-r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
-s = "I think I did it!"
-b.write(0, s, 0, 17)
-s2 = "change" 
-b.write(4, s2, 2, 4)
-r = b.read(0, r, 0, b.max_capacity)
-print r
+# r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
+# s = "I think I did it!"
+# b.write(0, s, 0, 17)
+# s2 = "change" 
+# b.write(4, s2, 2, 4)
+# r = b.read(0, r, 0, b.max_capacity)
+# print r
 
-release_block(block_num)
-block_num = get_free_block()
-b = block_number_to_block(block_num)
-r = [""] * b.max_capacity
-s3 = "I released the block and changed it!" 
-b.write(0, s3, 0, len(s3) - 1)
-r = b.read(0, r, 0, b.max_capacity)
-print r
+# release_block(block_num)
+# block_num = get_free_block()
+# b = block_number_to_block(block_num)
+# r = [""] * b.max_capacity
+# s3 = "I released the block and changed it!" 
+# b.write(0, s3, 0, len(s3) - 1)
+# r = b.read(0, r, 0, b.max_capacity)
+# print r
