@@ -4,10 +4,18 @@
 
 # Block Layer
 
-device = [""] * 1000  # device with 1000 blocks
-free_list = [0] * 1000 # a list holding the status of the block free or used
+device_size = 1000
 
-free_list[5] = 1
+#device = [""] * 1000  # device with 1000 blocks
+free_list = [0] * device_size  # a list holding the status of the block free or used
+
+# free_list[5] = 1
+
+
+
+
+
+
 
 class Block:
 	size = 0
@@ -23,7 +31,7 @@ class Block:
 				self.size = i + 1
 				return 1 # failure if full text was not written
 			# Checks for index out of bound problem
-			if(buf_i < num_bytes): 
+			if(buf_i <= num_bytes): 
 				buf_i += 1
 			else:
 				self.size = i + 1
@@ -61,38 +69,73 @@ class Block:
 
 """Finds a free block in the device"""
 def get_free_block():
-	for i in free_list:
-		if (free_list[i] == 0):
-			return free_list[i]
-	return "no free block"
+    for i in range(0, 0 + device_size-1): 
+        if(free_list[i] == 0): 
+            free_list[i] = 1 
+            return i
+    return 1 #failure
 
 
 """Sets a blocks status to free"""
 def release_block(num):
-	free_list[num] = 0
+    if(free_list[num] == 0):#checks if free
+        print "Already Free"
+    else: 
+        free_list[num] = 1 
 
 
 def block_number_to_block(num):
 	return device[num]
 
+# def make_device(size):
+# 	device = [] * size
+# 	print device
+# 	for i in range(size - 1):
+# 		b = Block()
+# 		device[1] = b
+# 		print i
+# 		#i = i + 1
+# 	return device
 
-b = Block() # instantiates a block 
+device = [Block() for i in range(device_size - 1)]
+
+block_num = get_free_block()
+b = block_number_to_block(block_num)
+
+r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
+s = "I think I did it!"
+b.write(0, s, 0, 17)
+s2 = "change" 
+b.write(4, s2, 2, 4)
+r = b.read(0, r, 0, b.max_capacity)
+print r
+
+release_block(block_num)
+block_num = get_free_block()
+b = block_number_to_block(block_num)
+r = [""] * b.max_capacity
+s3 = "I released the block and changed it!" 
+b.write(0, s3, 0, len(s3)-1)
+r = b.read(0, r, 0, b.max_capacity)
+print r
+
+# b = Block() # instantiates a block 
 
 # r = "" # declares a string to hold data read from block
-s = "I think I did it!"
-b.write(35, s, 0, 17)
+# s = "I think I did it!"
+# b.write(35, s, 0, 17)
 
-r = [""] * len(s)
+# r = [""] * len(s)
 #print get_free_block()
 
 # Example of how to write to a block
 # b.write(0, "Hello Worl", 0, 10) # writes Hello Worl to the block 
 # b.print_block_content()
-r = b.read(35, r, 0, len(s)) # reads the content of the block starting at the second character
+# r = b.read(35, r, 0, len(s)) # reads the content of the block starting at the second character
 
 
 
-print r
+# print r
 
 # print b.block_size() # prints the data that was read 
 
