@@ -55,7 +55,7 @@ class Block:
 
 """Finds a free block in the device"""
 def get_free_block():
-    for i in range(0, 0 + device_size - 1): 
+    for i in range(0, device_size - 1): 
         if(free_list[i] == 0): 
             free_list[i] = 1 
             return i
