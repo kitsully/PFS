@@ -37,13 +37,13 @@ class INode(object):
 
 	# Procedures ------
 
-	def index_to_block_number(self, index):
-		return self.iNode[index]
+	# def index_to_block_number(self, index):
+	# 	return self.iNode[index]
 
-	def inode_to_block(self, byte_offset):
-		o = byte_offset / c.block_size()
-		b = self.index_to_block_number(o)
-		return c.block_number_to_block(b)
+	# def inode_to_block(self, byte_offset):
+	# 	o = byte_offset / c.block_size()
+	# 	b = self.index_to_block_number(o)
+	# 	return c.block_number_to_block(b)
 
 
 
