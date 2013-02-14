@@ -4,7 +4,7 @@
 
 # File Layer
 
-import block
+import blockLayer
 
 _num_blocks_in_file = 100
 
