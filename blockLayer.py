@@ -36,8 +36,8 @@ class Block:
 
     """Read from a specific location in a block into a buffer"""
     def read(self, block_start, buff1, buffer_start, num_bytes):
-        if ((block_start + num_bytes) > self.max_capacity):
-            return 1  # Failure  
+        if ((block_start + num_bytes) > self.max_capacity):  # Checks to see if trying to read more than block can hold
+            raise Exception("Attempting to read more bytes than in block") 
         for i in range(block_start, block_start + num_bytes):
             buff1[buffer_start] = self.blk[i]
             i += 1
