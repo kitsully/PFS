@@ -4,6 +4,7 @@
 
 # Block Layer
 
+_block_size = 512
 device_size = 10000
 free_list = [0] * device_size  # a list holding the status of the block free or used
 
@@ -61,6 +62,10 @@ def get_free_block():
             return i
         else: 
             raise Exception("No more free blocks.")
+
+
+def get_block_size():
+    return _block_size
 
 
 """Sets a blocks status to free"""
