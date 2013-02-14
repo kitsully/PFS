@@ -5,7 +5,6 @@
 # Block Layer
 
 device_size = 10000
-
 free_list = [0] * device_size  # a list holding the status of the block free or used
 
 
@@ -49,7 +48,7 @@ class Block(object):
     def block_size(self):
         return self.size
 
-    """Sets the max_capacity of the clock"""
+    """Sets the max_capacity of the block"""
     def set_size(self, s):
         self.max_capacity = s
 
@@ -84,8 +83,27 @@ def block_number_to_block(num):
 
 
 if __name__ == '__main__':
-    print "Free blocks", free_list[:100]
+    print "----------"
+    # print "Free blocks", free_list[:100]
+    # block_num = get_free_block()
+    # b = block_number_to_block(block_num)
 
+    # r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
+    # s = "I think I did it!"
+    # b.write(0, s, 0, 17)
+    # s2 = "change" 
+    # b.write(4, s2, 2, 4)
+    # r = b.read(0, r, 0, b.max_capacity)
+    # print r
+
+    # release_block(block_num)
+    # block_num = get_free_block()
+    # b = block_number_to_block(block_num)
+    # r = [""] * b.max_capacity
+    # s3 = "I released the block and changed it!" 
+    # b.write(0, s3, 0, len(s3) - 1)
+    # r = b.read(0, r, 0, b.max_capacity)
+    # print r
 
 # b = Block()
 # print "s", b.block_size()
@@ -100,22 +118,4 @@ if __name__ == '__main__':
 
 
 
-# block_num = get_free_block()
-# b = block_number_to_block(block_num)
 
-# r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
-# s = "I think I did it!"
-# b.write(0, s, 0, 17)
-# s2 = "change" 
-# b.write(4, s2, 2, 4)
-# r = b.read(0, r, 0, b.max_capacity)
-# print r
-
-# release_block(block_num)
-# block_num = get_free_block()
-# b = block_number_to_block(block_num)
-# r = [""] * b.max_capacity
-# s3 = "I released the block and changed it!" 
-# b.write(0, s3, 0, len(s3) - 1)
-# r = b.read(0, r, 0, b.max_capacity)
-# print r
