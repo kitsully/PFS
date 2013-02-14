@@ -30,8 +30,8 @@ class INode(object):
         else:
         	raise Exception("Index number %s out of range." % index)
 
-    def inode_to_block(offset, inode_number):
-    	o = offset / block.block_size()
+    def inode_to_block(self, byte_offset):
+    	o = byte_offset / block.block_size()
     	b = self.index_to_block_number(o)
     	return block.block_number_to_block(b)
 
