@@ -53,12 +53,12 @@ class Block:
         self.max_capacity = s
 
 
-"""Finds a free block in the device"""
+"""Finds a free block in the device Allocates a free block""" 
 def get_free_block():
     for i in range(0, device_size - 1): 
         if(free_list[i] == 0): 
-            free_list[i] = 1 
-            return device[i]
+            free_list[i] = 1  # Block No Longer Free 
+            return i
     return 1 #failure
 
 
@@ -76,6 +76,19 @@ device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
 """Returns the Block at this location in the device"""
 def block_number_to_block(num):
     return device[num]
+
+# b = Block()
+# print "s", b.block_size()
+
+
+
+
+
+
+
+
+
+
 
 # block_num = get_free_block()
 # b = block_number_to_block(block_num)
