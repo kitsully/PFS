@@ -58,7 +58,7 @@ def get_free_block():
     for i in range(0, device_size - 1): 
         if(free_list[i] == 0): 
             free_list[i] = 1 
-            return i
+            return device[i]
     return 1 #failure
 
 
