@@ -80,6 +80,12 @@ def block_number_to_block(num):
     else:
         raise Exception("Out of Range")
 
+
+
+if __name__ == '__main__':
+    print "Free blocks", free_list[:100]
+
+
 # b = Block()
 # print "s", b.block_size()
 
