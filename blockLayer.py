@@ -23,7 +23,7 @@ class Block:
                 self.blk[i] = buff1[buf_i]
             else:
                 self.size = i + 1
-                return 1  # failure if full text was not written
+                raise Exception("Full text not written")
             # Checks for index out of bound problem
             if(buf_i <= num_bytes): 
                 buf_i += 1
