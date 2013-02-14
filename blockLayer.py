@@ -59,7 +59,7 @@ def get_free_block():
         if(free_list[i] == 0): 
             free_list[i] = 1  # Block No Longer Free 
             return i
-    return 1 #failure
+    raise Exception("No more free blocks.")
 
 
 """Sets a blocks status to free"""
@@ -67,7 +67,7 @@ def release_block(num):
     if(free_list[num] == 0):  # checks if free
         print "Already Free"
     else: 
-        free_list[num] = 1 
+        free_list[num] = 0  # Changes Block status to free 
 
 
 device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
