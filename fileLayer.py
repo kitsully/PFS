@@ -27,14 +27,13 @@ class INode(object):
     def index_to_block_number(self, index):
         if self.valid_index(index):
             return self.blocks[index]
-        raise Exception("Index number %s out of range." % index)
+        else:
+        	raise Exception("Index number %s out of range." % index)
 
-
-    def inode_number_to_block(offset, inode_number):
-    	inode = index_to_block_number(inode_number)
+    def inode_to_block(offset, inode_number):
     	o = offset / block.block_size()
-    	b = inode.index_to_block_number(o)
-    	return block.index_to_block_number(b)
+    	b = self.index_to_block_number(o)
+    	return block.block_number_to_block(b)
 
 
 
