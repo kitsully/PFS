@@ -59,7 +59,8 @@ def get_free_block():
         if(free_list[i] == 0): 
             free_list[i] = 1  # Block No Longer Free 
             return i
-    raise Exception("No more free blocks.")
+        else: 
+            raise Exception("No more free blocks.")
 
 
 """Sets a blocks status to free"""
