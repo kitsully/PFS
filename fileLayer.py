@@ -31,14 +31,19 @@ class INode(object):
 		self.inode_type = inode_type
 	
 
+		def valid_index(self, index):
+			return True
+
 
 	# iNode = ['_'] * max_number_blocks_per_file  # the list holding the files data in sequence
 	# size = 0  # the maximum size of the iNode
 
 	# Procedures ------
 
-	# def index_to_block_number(self, index):
-	# 	return self.iNode[index]
+	def index_to_block_number(self, index):
+		if self.valid_index(index):
+			return self.blocks[index]
+		raise Exception("Index number %s out of range." % index)
 
 	# def inode_to_block(self, byte_offset):
 	# 	o = byte_offset / c.block_size()
