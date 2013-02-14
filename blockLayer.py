@@ -15,11 +15,6 @@ class Block(object):
         self.max_capacity = 512
         self.blk = ['_'] * 512
 
-
-    # size = 0
-    # max_capacity = 512
-    # blk = ['_'] * 512  # This creates a list with 512 spaces 
-
     """Write from a buffer to a specific location in a block"""
     def write(self, block_start, buff1, buffer_start, num_bytes):
         buf_i = buffer_start 
@@ -38,7 +33,7 @@ class Block(object):
                 return 0  # success
             i += 1
         self.size = i + 1
-        return 1  # return failure by default
+        return 0  
 
     """Read from a specific location in a block into a buffer"""
     def read(self, block_start, buff1, buffer_start, num_bytes):
@@ -105,16 +100,16 @@ if __name__ == '__main__':
 
 
 
-block_num = get_free_block()
-b = block_number_to_block(block_num)
+# block_num = get_free_block()
+# b = block_number_to_block(block_num)
 
-r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
-s = "I think I did it!"
-b.write(0, s, 0, 17)
-s2 = "change" 
-b.write(4, s2, 2, 4)
-r = b.read(0, r, 0, b.max_capacity)
-print r
+# r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
+# s = "I think I did it!"
+# b.write(0, s, 0, 17)
+# s2 = "change" 
+# b.write(4, s2, 2, 4)
+# r = b.read(0, r, 0, b.max_capacity)
+# print r
 
 # release_block(block_num)
 # block_num = get_free_block()
