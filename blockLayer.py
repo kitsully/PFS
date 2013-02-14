@@ -4,7 +4,7 @@
 
 # Block Layer
 
-device_size = 1000
+device_size = 10000
 
 free_list = [0] * device_size  # a list holding the status of the block free or used
 
@@ -75,7 +75,10 @@ device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
 
 """Returns the Block at this location in the device"""
 def block_number_to_block(num):
-    return device[num]
+    if (0 <= num) and (num < device_size):
+        return device[num]
+    else:
+        raise Exception("Out of Range")
 
 # b = Block()
 # print "s", b.block_size()
