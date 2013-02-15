@@ -37,5 +37,15 @@ if __name__ == '__main__':
 	# print _inode_table
 
 	print "=====", _inode_table[1]
-	print "=====", inode_number_to_block(512, 1)
+	print "=====", inode_number_to_block(0, 1)
+	i = inode_number_to_block(0, 1)
+
+
+	s = "I think I did it!"
+	s = list("I think I did it!")
+	print s[2]
+	i.write(0, s, 0, 17)
+	r = [""] * 20
+	r = i.read(0, r, 0, len(s))
+	print "===", r 
 
