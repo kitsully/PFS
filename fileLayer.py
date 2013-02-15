@@ -26,14 +26,17 @@ class INode(object):
 
     def index_to_block_number(self, index):
         if self.valid_index(index):
-            return self.blocks[index]
+        	# print "******", self.blocks[index]
+        	return index
         else:
         	raise Exception("Index number %s out of range." % index)
 
     def inode_to_block(self, byte_offset):
-    	o = byte_offset / block.block_size()
+    	o = byte_offset / blockLayer.get_block_size()
+    	print "------", o
     	b = self.index_to_block_number(o)
-    	return block.block_number_to_block(b)
+    	print "======", b
+    	return blockLayer.block_number_to_block(b)
 
 
 
@@ -53,14 +56,14 @@ if __name__ == '__main__':
     print "File inode:"
     inode = INode()
     b = blockLayer.Block()
-    inode.add_block(2, b)
-    inode.inode_number_to_block()
+    inode.add_block(1, b)
+    print inode.inode_to_block(514)
     print inode.blocks
-    print inode.size
-    print inode.inode_type
+    # print inode.size
+    # print inode.inode_type
 
-    print "Directory inode:"
-    inode = INode(inode_type=FileType.directory)
-    print inode.blocks
-    print inode.size
-    print inode.inode_type
+    # print "Directory inode:"
+    # inode = INode(inode_type=FileType.directory)
+    # print inode.blocks
+    # print inode.size
+    # print inode.inode_type
