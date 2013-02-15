@@ -32,7 +32,7 @@ class Block(object):
                 self.size = i + 1
                 return 0  # success
             i += 1
-        self.size = i + 1
+        self.size = i + 1       
         return 0  
 
     """Read from a specific location in a block into a buffer"""
@@ -88,15 +88,15 @@ def block_number_to_block(num):
 
 
 
-if __name__ == '__main__':
-    print "----------"
+# if __name__ == '__main__':
+    # print "----------"
     # print "Free blocks", free_list[:100]
     # block_num = get_free_block()
     # b = block_number_to_block(block_num)
 
     # r = [""] * b.max_capacity # an array with the same size as a block. Will be used to read
-    # s = "I think I did it!"
-    # b.write(0, s, 0, 17)
+    # s = "Test"
+    # b.write(0, s, 0, len(s))
     # s2 = "change" 
     # b.write(4, s2, 2, 4)
     # r = b.read(0, r, 0, b.max_capacity)
@@ -110,18 +110,4 @@ if __name__ == '__main__':
     # b.write(0, s3, 0, len(s3) - 1)
     # r = b.read(0, r, 0, b.max_capacity)
     # print r
-
-# b = Block()
-# print "s", b.block_size()
-
-
-
-
-
-
-
-
-
-
-
 
