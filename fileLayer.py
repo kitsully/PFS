@@ -19,7 +19,10 @@ class INode(object):
         self.inode_type = inode_type
         
     def valid_index(self, index):
-        return True
+        if (index >= 0 and index <= _num_blocks_in_file - 1 and self.blocks[index] != -1):
+        	return True
+        else:
+            raise Exception("Not a valid index")	
 
     def add_block(self, index, block):
     	self.blocks[index] = block
