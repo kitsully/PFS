@@ -29,7 +29,7 @@ class INode(object):
 
     def index_to_block_number(self, index):
         if self.valid_index(index):
-        	return self.blocks[index]
+            return self.blocks[index]
         	# return index
         else:
         	raise Exception("Index number %s out of range." % index)
@@ -55,14 +55,14 @@ class INode(object):
 
 
 
-if __name__ == '__main__':
-    print "File inode:"
-    inode = INode()
-    b = blockLayer.Block()
-    inode.add_block(1, 32)
-    print inode.index_to_block_number(1)
-    print inode.inode_to_block(514)
-    print inode.blocks
+# if __name__ == '__main__':
+    # print "File inode:"
+    # inode = INode()
+    # b = blockLayer.Block()
+    # inode.add_block(1, 32)
+    # print inode.index_to_block_number(1)
+    # print inode.inode_to_block(514)
+    # print inode.blocks
     # print inode.size
     # print inode.inode_type
 
