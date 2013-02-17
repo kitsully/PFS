@@ -26,6 +26,7 @@ class INode(object):
 
     def add_block(self, index, block):
     	self.blocks[index] = block
+        self.size += 1
 
     def index_to_block_number(self, index):
         if self.valid_index(index):
