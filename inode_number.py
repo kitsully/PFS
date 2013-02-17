@@ -27,11 +27,8 @@ def inode_number_to_inode(inode_num):
 
 def inode_number_to_block(offset, inode_num):
 	inode = inode_number_to_inode(inode_num)
-	print "#####", inode
 	o = offset / blockLayer.get_block_size()
-	print "^^^^^", o
 	b = inode.index_to_block_number(o)
-	print "@@@@@@", b
 	return blockLayer.block_number_to_block(b)
 
 
