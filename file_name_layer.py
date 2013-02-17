@@ -50,6 +50,9 @@ def lookup(filename, directory):
 		offset = offset + blockLayer.get_block_size()
 	raise Exception("Error")
 
+def name_to_inode_number(filename, directory):
+	return lookup(filename, directory)
+
 
 if __name__ == '__main__':
 	i = inode_number.inode_number_to_inode(2)	
@@ -62,7 +65,7 @@ if __name__ == '__main__':
 	# print s
 	b.write(0, s, 0, len(s))
 	i.add_block(0, bnum)
-	test = lookup("red", 2)
+	test = name_to_inode_number("red", 2)
 	print test 
 
 	
