@@ -8,7 +8,6 @@ _block_size = 512
 device_size = 10000
 free_list = [0] * device_size  # a list holding the status of the block free or used
 
-
 class Block(object):
     def __init__(self):
         self.size = 0
@@ -53,6 +52,8 @@ class Block(object):
     def set_size(self, s):
         self.max_capacity = s
 
+def valid_block_number(num):
+    return (0 <= num) and (num < device_size)
 
 """Finds a free block in the device Allocates a free block""" 
 def get_free_block():
@@ -70,10 +71,11 @@ def get_block_size():
 
 """Sets a blocks status to free"""
 def release_block(num):
-    if(free_list[num] == 0):  # checks if free
-        print "Already Free"
-    else: 
-        free_list[num] = 0  # Changes Block status to free 
+    if valid_block_number(num):
+        if(free_list[num] == 0):  # checks if free
+            print "Already Free"
+        else: 
+            free_list[num] = 0  # Changes Block status to free 
 
 
 device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
@@ -85,6 +87,7 @@ def block_number_to_block(num):
         return device[num]
     else:
         raise Exception("Out of Range")
+
 
 
 
