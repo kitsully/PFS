@@ -13,9 +13,6 @@ _num_inodes = 100
 _inode_table = []
 _free_inodes = [0] * _num_inodes
 
-
-
-
 for i in range(0, _num_inodes):
 	_inode_table.append(INode(inode_type = FileType.regular_file))
 
