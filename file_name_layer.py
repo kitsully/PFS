@@ -17,6 +17,9 @@ def createDict(data):
 		dic.update({part[0]:part[1]})
 	return dic
 
+def valid_filename(filename):
+	return (filename.find(",") != -1) or (filename.find("|") != -1)
+
 def string_match(filename, b):
 	buf = [''] * blockLayer._block_size
 	buf = b.read(0, buf, 0, b.block_size() - 1)
@@ -39,16 +42,19 @@ def inode_num(filename, b):
 
 
 def lookup(filename, directory):
-	i = inode_number.inode_number_to_inode(directory)
-	if (i.inode_type != FileType.directory):
-		raise Exception ("Not a directory.")
-	offset = 0
-	while (offset < i.size):
-		b = inode_number.inode_number_to_block(offset,  directory)
-		if (string_match(filename, b)):
-			return inode_num(filename, b)
-		offset = offset + blockLayer.get_block_size()
-	raise Exception("Error")
+	if(valid_filename(filename) == 0):
+		i = inode_number.inode_number_to_inode(directory)
+		if (i.inode_type != FileType.directory):
+			raise Exception ("Not a directory.")
+		offset = 0
+		while (offset < i.size):
+			b = inode_number.inode_number_to_block(offset,  directory)
+			if (string_match(filename, b)):
+				return inode_num(filename, b)
+			offset = offset + blockLayer.get_block_size()
+		raise Exception("Error")
+	else:
+		raise Exception("The filename %s is not a valid name." % filename)
 
 def name_to_inode_number(filename, directory):
 	return lookup(filename, directory)

@@ -17,7 +17,7 @@ _free_inodes = [0] * _num_inodes
 for i in range(0, _num_inodes):
 	_inode_table.append(INode(inode_type = FileType.regular_file))
 
-_free_inodes[0] = 1 # free inode
+_free_inodes[0] = 1 # marks inode as used
 
 def change_type(num): # changes inode type to directory
 	_inode_table[num].inode_type = FileType.directory
