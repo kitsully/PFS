@@ -27,25 +27,23 @@ def inode_number_to_inode(inode_num):
 
 def inode_number_to_block(offset, inode_num):
 	inode = inode_number_to_inode(inode_num)
+	print "#####", inode
 	o = offset / blockLayer.get_block_size()
+	print "^^^^^", o
 	b = inode.index_to_block_number(o)
+	print "@@@@@@", b
 	return blockLayer.block_number_to_block(b)
 
 
 
 if __name__ == '__main__':
-	# print _inode_table
+    inode = INode()
+    inode.add_block(0, 32)
+    print inode
+    _inode_table[0] = inode
+    print _inode_table[0]
+    
+    test = inode_number_to_block(0, 0)
+    print test
 
-	print "=====", _inode_table[1]
-	print "=====", inode_number_to_block(0, 1)
-	i = inode_number_to_block(0, 1)
-
-
-	s = "I think I did it!"
-	s = list("I think I did it!")
-	print s[2]
-	i.write(0, s, 0, 17)
-	r = [""] * 20
-	r = i.read(0, r, 0, len(s))
-	print "===", r 
 
