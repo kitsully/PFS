@@ -4,6 +4,12 @@
 
 # path_name
 
+import fileLayer
+import blockLayer
+from fileLayer import INode, FileType
+import inode_number
+import file_name_layer
+
 def plain_name(path): # scans its argument for the UNIX path name separator (forward slash).
 	if (path.find("/") == -1):
 		return True
