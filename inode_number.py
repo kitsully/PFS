@@ -11,10 +11,27 @@ from fileLayer import INode, FileType
 
 _num_inodes = 100
 _inode_table = []
+_free_inodes = [0] * _num_inodes
+
+
+
 
 for i in range(0, _num_inodes):
 	_inode_table.append(INode(inode_type = FileType.regular_file))
 
+def release_inode(num):
+    if(_free_inodes[num] == 0):  # checks if free
+        print "Already Free"
+    else: 
+        _free_inodes[num] = 0  # Changes inode status to free 
+
+def get_free_inode():
+    for i in range(0, _inode_table - 1): 
+        if(_free_inodes[i] == 0): 
+            _free_inodes[i] = 1  # Block No Longer Free 
+            return i
+        else: 
+            raise Exception("No more free inodes.")
 
 def valid_inode(inode_num):
 	return (inode_num >= 0) and (inode_num < _num_inodes)
