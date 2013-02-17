@@ -19,16 +19,17 @@ for i in range(0, _num_inodes):
 
 _free_inodes[0] = 1 # free inode
 
-def change_type(num):
+def change_type(num): # changes inode type to directory
 	_inode_table[num].inode_type = FileType.directory
 
 change_type(0)
 
 def release_inode(num):
-    if(_free_inodes[num] == 0):  # checks if free
-        print "Already Free"
-    else: 
-        _free_inodes[num] = 0  # Changes inode status to free 
+	if valid_inode(num):
+	    if(_free_inodes[num] == 0):  # checks if free
+	        print "Already Free"
+	    else: 
+	        _free_inodes[num] = 0  # Changes inode status to free 
 
 def get_free_inode():
     for i in range(0, _inode_table - 1): 
