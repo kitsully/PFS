@@ -13,8 +13,16 @@ _num_inodes = 100
 _inode_table = []
 _free_inodes = [0] * _num_inodes
 
+
 for i in range(0, _num_inodes):
 	_inode_table.append(INode(inode_type = FileType.regular_file))
+
+_free_inodes[0] = 1 # free inode
+
+def change_type(num):
+	_inode_table[num].inode_type = FileType.directory
+
+change_type(0)
 
 def release_inode(num):
     if(_free_inodes[num] == 0):  # checks if free
