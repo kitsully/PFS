@@ -45,7 +45,7 @@ def string_match(filename, b):
 		else:
 			return False
 
-def inode_number(filename, b):
+def inode_num(filename, b):
 	buf = [''] * blockLayer._block_size
 	buf = b.read(0, buf, 0, b.max_capacity)
 	d = "".join(buf)
