@@ -90,11 +90,11 @@ def block_number_to_block(num):
 
 
 
-if __name__ == '__main__':
-    get_free_block()
+# if __name__ == '__main__':
+    # get_free_block()
 
-    get_free_block()
-    get_free_block()
+    # get_free_block()
+    # get_free_block()
 
     # print "----------"
     # print "Free blocks", free_list[:100]
