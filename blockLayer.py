@@ -82,6 +82,7 @@ device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
 
 """Returns the Block at this location in the device"""
 def block_number_to_block(num):
+    print "*bnum*", num
     if (0 <= num) and (num < device_size):
         return device[num]
     else:
