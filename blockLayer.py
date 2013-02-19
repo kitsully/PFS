@@ -61,8 +61,7 @@ def get_free_block():
         if(free_list[i] == 0): 
             free_list[i] = 1  # Block No Longer Free 
             return i
-        else: 
-            raise Exception("No more free blocks.")
+    raise Exception("No more free blocks in device.")
 
 
 def get_block_size():
@@ -91,7 +90,12 @@ def block_number_to_block(num):
 
 
 
-# if __name__ == '__main__':
+if __name__ == '__main__':
+    get_free_block()
+
+    get_free_block()
+    get_free_block()
+
     # print "----------"
     # print "Free blocks", free_list[:100]
     # block_num = get_free_block()
