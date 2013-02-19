@@ -71,86 +71,15 @@ def create_file(filename, directory):
 		block = blockLayer.block_number_to_block(bnum)
 		d_inode = inode_number.inode_number_to_inode(directory)
 		d_block = inode_number.inode_number_to_block((d_inode.size - 1) * blockLayer._block_size, directory)
-		print "#####", d_block
 		data = filename + "|" + str(inum) + ","
 		d_block.write(d_block.size - 1, data, 0, len(data))
 		b_string = [""] * d_block.size
 		b_string = d_block.read(0, b_string, 0, d_block.size)
-		print b_string
-
-# def create_file(file_name, direct):
-#     if(valid_file_name(file_name) == 0):
-#         inode_num = InodeNumber_Layer.get_free_inode()
-#         inode = Inode(inode_type=FileType.regular_file)
-#         block_num = inode.add_block()
-#         block = Block_Layer.block_number_to_block(block_num)
-#         direct_inode = InodeNumber_Layer.inode_number_to_inode(direct)
-#         direct_block = InodeNumber_Layer.inode_number_to_block((direct_inode.size-1)*Block_Layer.block_size, direct)
-#         string = file_name+"|"+str(inode_num)+","
-#         direct_block.write(direct_block.size, string, 0, len(string))
-#         block_string = [""] * direct_block.size
-#         block_string = direct_block.read(0, block_string, 0, direct_block.size)
-#         print direct_block.block[0:512]
 
 
-# def create_file(file_name, direct):
-#     if(valid_file_name(file_name) == 0):
-#         inode_num = InodeNumber_Layer.get_free_inode()
-#         inode = Inode(inode_type=FileType.regular_file)
-#         block_num = inode.add_block()
-#         block = Block_Layer.block_number_to_block(block_num)
-#         direct_inode = InodeNumber_Layer.inode_number_to_inode(direct)
-#         direct_block = InodeNumber_Layer.inode_number_to_block((direct_inode.size-1)*Block_Layer.block_size, direct)
-#         string = file_name+"|"+str(inode_num)+","
-#         direct_block.write(direct_block.size, string, 0, len(string))
-#         block_string = [""] * direct_block.size
-#         block_string = direct_block.read(0, block_string, 0, direct_block.size)
+# if __name__ == '__main__':
 
-
-
-		# inum = inode_number.get_free_inode()
-		# i = inode_number.inode_number_to_inode(inum)
-		# i.inode_type = FileType.regular_file
-		# #print "$$$$$", blockLayer.get_free_block()
-		# #print "$$$$$", blockLayer.get_free_block()
-		# i.blocks[0] = blockLayer.get_free_block()
-		# #print "@@@@@", i.blocks[0]
-		# bnum = i.blocks[0]
-		# block = blockLayer.block_number_to_block(bnum)
-		# i_direct = inode_number.inode_number_to_inode(directory)
-		# i_direct.blocks[0] = blockLayer.get_free_block()
-		# #print "!!!!!!!", i_direct.blocks[0]
-		# block_direct = inode_number.inode_number_to_block((i_direct.size - 1) * blockLayer.get_block_size(), directory)
- 	# 	d = filename + "|" + str(inum) + ","
- 	# 	block_direct.write(block_direct.size, d, 0, len(d))
- 	# 	string = [""] * block_direct.size
- 	# 	string = block_direct.read(0, string, 0, block_direct.size)
- 	# 	print string
-
-		# i3 = inode_number.get_free_inode()
-		# i2 = inode_number.inode_number_to_inode(i3)
-		# i2.blocks[0] = blockLayer.get_free_block()
-		# i2.inode_type = FileType.directory
-		# bnum2 = i2.blocks[0]
-		# block2 = blockLayer.block_number_to_block(bnum2)
-		# d = directory + "|" + str(i1) + ","
-		# block2.write(0, d, 0, len(d))
-		# r = [""] * 20
-		# r = block2.read(0, r, 0, 20)
-		# print r
-
-
-
-
-
-
-
-
-
-
-if __name__ == '__main__':
-
-	create_file("test", 0)
+	# create_file("test", 0)
 	# create_file(2, 2)
 
 	# i = inode_number.get_free_inode()

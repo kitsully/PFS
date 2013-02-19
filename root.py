@@ -16,7 +16,6 @@ file_name_layer.create_file("wooo", 0)
 file_name_layer.create_file("FUCKYES", 0)
 # file_name_layer.create_file("FUCKYES", 1)
 
-#b = blockLayer.block_number_to_block(inode_number._inode_table[0].blocks[0])
 
 b = file_name_layer.lookup("wooo", 0)
 

@@ -26,42 +26,21 @@ class INode(object):
             raise Exception("%r at %r not a valid index" % (self.blocks[index], index))	
 
     def add_block(self):
-        print "#################", self.size
     	index = self.size
         self.blocks[index] = blockLayer.get_free_block()
-        print "::::::", self.blocks[index]
         self.size += 1
-        print "#############################$$$$$$$$$$$$$$$", self.size
-
         return self.blocks[index]
 
     def index_to_block_number(self, index):
         if self.valid_index(index):
-            #self.size += 1
             return self.blocks[index]
-        	# return index
         else:
         	raise Exception("Index number %s out of range." % index)
 
     def inode_to_block(self, byte_offset):
     	o = byte_offset / blockLayer.get_block_size()
-    	print "------", o
     	b = self.index_to_block_number(o)
-    	print "======", b
     	return blockLayer.block_number_to_block(b)
-
-
-
-
-
-# inode = INode()
-
-# b = blockLayer.Block()
-# #b.block_size()
-
-# inode.add_block(2, b)
-# print inode.valid_index(1)
-
 
 
 # if __name__ == '__main__':
