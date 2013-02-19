@@ -21,17 +21,17 @@ class Block(object):
             # checks if block can be written too
             if(i < self.max_capacity):
                 self.blk[i] = buff1[buf_i]
-            else:
                 self.size = i + 1
+            else:
                 raise Exception("Full text not written")
             # Checks for index out of bound problem
             if(buf_i <= num_bytes): 
                 buf_i += 1
             else:
-                self.size = i + 1
+                # self.size = i + 1
                 return 0  # success
             i += 1
-        self.size = i + 1       
+        # self.size = i + 1       
         return 0  
 
     """Read from a specific location in a block into a buffer"""

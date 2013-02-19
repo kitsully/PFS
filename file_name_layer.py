@@ -10,7 +10,7 @@ from fileLayer import INode, FileType
 import inode_number
 
 def createDict(data):
-	b = data.split(",")
+	b = data.split(',')
 	dic = {}
 	print b
 	for item in b:
@@ -23,9 +23,10 @@ def valid_filename(filename):
 	return (filename.find(",") != -1) or (filename.find("|") != -1)
 
 def string_match(filename, b):
-	buf = [''] * blockLayer._block_size
-	buf = b.read(0, buf, 0, b.block_size() - 1)
+	buf = [''] * b.size
+	buf = b.read(0, buf, 0, b.size - 1)
 	d = "".join(buf)
+	print "--", d
 	dic = createDict(d)
 	for item in dic:
 		if (filename == item):
@@ -33,8 +34,8 @@ def string_match(filename, b):
 	return False
 
 def inode_num(filename, b):
-	buf = [''] * blockLayer._block_size
-	buf = b.read(0, buf, 0, b.block_size() - 1)
+	buf = [''] * b.size
+	buf = b.read(0, buf, 0, b.size - 1)
 	d = "".join(buf)
 	dic = createDict(d)
 	for item in dic:
@@ -50,6 +51,7 @@ def lookup(filename, directory):
 		if (i.inode_type != FileType.directory):
 			raise Exception ("Not a directory.")
 		offset = 0
+		print "size", i.size
 		while (offset < i.size):
 			b = inode_number.inode_number_to_block(offset,  directory)
 			if (string_match(filename, b)):
@@ -72,7 +74,7 @@ def create_file(filename, directory):
 		d_inode = inode_number.inode_number_to_inode(directory)
 		d_block = inode_number.inode_number_to_block((d_inode.size - 1) * blockLayer._block_size, directory)
 		data = filename + "|" + str(inum) + ","
-		d_block.write(d_block.size - 1, data, 0, len(data))
+		d_block.write(d_block.size, data, 0, len(data))
 		b_string = [""] * d_block.size
 		b_string = d_block.read(0, b_string, 0, d_block.size)
 

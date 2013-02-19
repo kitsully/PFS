@@ -17,7 +17,7 @@ file_name_layer.create_file("FUCKYES", 0)
 # file_name_layer.create_file("FUCKYES", 1)
 
 
-b = file_name_layer.lookup("wooo", 0)
+b = file_name_layer.lookup("FUCKYES", 0)
 
 print b
 
