@@ -32,12 +32,11 @@ def release_inode(num):
 	        _free_inodes[num] = 0  # Changes inode status to free 
 
 def get_free_inode():
-    for i in range(0, _inode_table - 1): 
+    for i in range(1, _num_inodes - 1):
         if(_free_inodes[i] == 0): 
-            _free_inodes[i] = 1  # Block No Longer Free 
+            _free_inodes[i] = 1  
             return i
-        else: 
-            raise Exception("No more free inodes.")
+    raise Exception("No more free inodes.")
 
 def valid_inode(inode_num):
 	return (inode_num >= 0) and (inode_num < _num_inodes)
