@@ -15,7 +15,7 @@ def createDict(data):
 	for item in b:
 		part = item.split("|")
 		dic.update({part[0]:part[1]})
-	print "Dictionary in inode: ", dic
+	# print "Dictionary in inode: ", dic
 	return dic
 
 def valid_filename(filename):
