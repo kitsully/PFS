@@ -29,10 +29,8 @@ def rest(path): # returns the remainder of the path name
 
 def path_to_inode_number(path, directory): # takes a path its inode number
 	if (plain_name(path)):
-		print "path: ", path
 		return file_name_layer.name_to_inode_number(path, directory)
 	else:
-		print "path: ", path
 		directory = file_name_layer.lookup(first(path), directory)
 		path = rest(path)
 		return path_to_inode_number(path, directory)

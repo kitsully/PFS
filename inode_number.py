@@ -9,6 +9,7 @@ import fileLayer
 import blockLayer
 from fileLayer import INode, FileType
 
+
 _num_inodes = 100
 _inode_table = []
 _free_inodes = [0] * _num_inodes
@@ -55,13 +56,13 @@ def inode_number_to_block(offset, inode_num):
 
 
 
-if __name__ == '__main__':
-    inode = INode()
-    inode.add_block(0, 32)
-    print inode
-    _inode_table[0] = inode
-    print _inode_table[0]    
-    test = inode_number_to_block(0, 0)
-    print test
+# if __name__ == '__main__':
+#     inode = INode()
+#     inode.add_block(0, 32)
+#     print inode
+#     _inode_table[0] = inode
+#     print _inode_table[0]    
+#     test = inode_number_to_block(0, 0)
+#     print test
 
 

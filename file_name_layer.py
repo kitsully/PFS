@@ -12,11 +12,10 @@ import inode_number
 def createDict(data):
 	b = data.split(',')
 	dic = {}
-	print b
 	for item in b:
 		part = item.split("|")
 		dic.update({part[0]:part[1]})
-	print dic
+	print "Dictionary in inode: ", dic
 	return dic
 
 def valid_filename(filename):
@@ -44,15 +43,12 @@ def inode_num(filename, b):
 
 
 def lookup(filename, directory):
-	print directory
 	if(valid_filename(filename) == 0):
 		i = inode_number.inode_number_to_inode(directory)
 		if (i.inode_type != FileType.directory):
 			raise Exception ("Not a directory.")
 		offset = 0
 		while (offset < i.size):
-			print "size: ", i.size
-			print "offset: ", offset
 			b = inode_number.inode_number_to_block(offset,  directory)
 			if (string_match(filename, b)):
 				return inode_num(filename, b)  # may need to be returned as an int
