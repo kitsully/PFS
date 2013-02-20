@@ -53,7 +53,7 @@ def lookup(filename, directory):
 			if (string_match(filename, b)):
 				return inode_num(filename, b)  # may need to be returned as an int
 			offset = offset + blockLayer._block_size
-		raise Exception("Error")
+		return 0
 	else:
 		raise Exception("The filename %s is not a valid name." % filename)
 
