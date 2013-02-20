@@ -46,8 +46,8 @@ def cat(filename): # Prints out the contents of a file
 	buf = [""] * (blockLayer._block_size * num_blocks)
 	while(pointer < num_blocks):
 		block = blockLayer.block_number_to_block(i.blocks[pointer])
-		s = "dfdfdfdfd"
-		block.write(0, s, 0, len(s) )
+		# s = "dfdfdfdfd"
+		# block.write(0, s, 0, len(s) )
 		buf = block.read(0, buf, count, block.size)
 		pointer += 1
 		count += blockLayer._block_size 
@@ -60,6 +60,8 @@ def cat(filename): # Prints out the contents of a file
 # cd("/")
 # ls()
 # print "----"
-cd("/Home/Kris/Music")
-ls()
+# cd("/Home/Kris/Music")
+cd("/Home/Kris/Docs")
+cat("Doc_1")
+# ls()
  
