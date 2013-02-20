@@ -41,19 +41,44 @@ def cat(filename): # Prints out the contents of a file
 	i = inode_number.inode_number_to_inode(inum)
 	for b in i.blocks:
 		if (b != -1):
-			num_blocks += 1
-	# print "-----", num_blocks		
+			num_blocks += 1	
 	buf = [""] * (blockLayer._block_size * num_blocks)
 	while(pointer < num_blocks):
 		block = blockLayer.block_number_to_block(i.blocks[pointer])
-		# s = "dfdfdfdfd"
-		# block.write(0, s, 0, len(s) )
 		buf = block.read(0, buf, count, block.size)
 		pointer += 1
 		count += blockLayer._block_size 
 	buf = "".join(buf)
 	print buf
  
+
+def rm(filename): # removes a file from a working directory
+	num = 0
+	inum = file_name_layer.lookup(filename, path_name_layer._wd)
+	i = inode_number.inode_number_to_inode(inum)
+	for b in i.blocks:
+		if (b != -1):
+			blockLayer.release_block(i.blocks[num])
+		num += 1
+	inode_number.release_inode(inum)
+	inode_directory = inode_number.inode_number_to_inode(path_name_layer._wd)
+	block_directory = blockLayer.block_number_to_block(inode_directory.blocks[0])
+	buf = [""] * block_directory.size
+	buf = block_directory.read(0, buf, 0, block_directory.size)
+	buf = "".join(buf)
+	search = filename + "|" + str(inum) + ","
+	buf = buf.replace(search, "")
+ 	clear = "_" * 512
+ 	block_directory.write(0, clear, 0, len(clear))
+	block_directory.write(0, buf, 0, len(buf))
+	if(len(buf) == 0): # checks to see if the directory is now empty
+		block_directory.size = 0
+	
+
+
+
+
+
 
 
 
@@ -62,6 +87,8 @@ def cat(filename): # Prints out the contents of a file
 # print "----"
 # cd("/Home/Kris/Music")
 cd("/Home/Kris/Docs")
-cat("Doc_1")
+rm("Doc_1")
+ls()
+#cat("Doc_1")
 # ls()
  
