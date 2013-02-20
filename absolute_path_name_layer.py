@@ -48,6 +48,10 @@ d_inode_music = path_name_layer.path_to_inode_number("Music", d_inode2)
 file_name_layer.create_file("song_1", d_inode_music)
 file_name_layer.create_file("song_2", d_inode_music)
 
+# Create an empty directory
+file_name_layer.mkdir("Empty", d_inode2)
+d_inode_music = path_name_layer.path_to_inode_number("Empty", d_inode2)
+
 
 
 def general_path_to_inode_number(path):
