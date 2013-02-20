@@ -19,7 +19,6 @@ class INode(object):
         self.inode_type = inode_type
         
     def valid_index(self, index):
-        print "*****", self.blocks[index]
         if (index >= 0 and index <= _num_blocks_in_file - 1 and self.blocks[index] != -1):
         	return True
         else:

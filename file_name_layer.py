@@ -26,7 +26,6 @@ def string_match(filename, b):
 	buf = [''] * b.size
 	buf = b.read(0, buf, 0, b.size - 1)
 	d = "".join(buf)
-	print "--", d
 	dic = createDict(d)
 	for item in dic:
 		if (filename == item):
@@ -51,12 +50,13 @@ def lookup(filename, directory):
 		if (i.inode_type != FileType.directory):
 			raise Exception ("Not a directory.")
 		offset = 0
-		print "size", i.size
 		while (offset < i.size):
+			print "size: ", i.size
+			print "offset: ", offset
 			b = inode_number.inode_number_to_block(offset,  directory)
 			if (string_match(filename, b)):
 				return inode_num(filename, b)  # may need to be returned as an int
-			offset = offset + blockLayer.get_block_size()
+			offset = offset + blockLayer._block_size
 		raise Exception("Error")
 	else:
 		raise Exception("The filename %s is not a valid name." % filename)
@@ -68,15 +68,28 @@ def name_to_inode_number(filename, directory):
 def create_file(filename, directory):
 	if(valid_filename(filename) == 0):
 		inum = inode_number.get_free_inode()
-		i = INode(inode_type = FileType.regular_file)
-		bnum = i.add_block()
-		block = blockLayer.block_number_to_block(bnum)
+		i = inode_number.inode_number_to_inode(inum)
+		i.inode_type=FileType.regular_file
+		i.add_block()
 		d_inode = inode_number.inode_number_to_inode(directory)
 		d_block = inode_number.inode_number_to_block((d_inode.size - 1) * blockLayer._block_size, directory)
 		data = filename + "|" + str(inum) + ","
 		d_block.write(d_block.size, data, 0, len(data))
 		b_string = [""] * d_block.size
 		b_string = d_block.read(0, b_string, 0, d_block.size)
+
+def mkdir(filename, directory):
+		inum = inode_number.get_free_inode()
+		i = inode_number.inode_number_to_inode(inum)
+		i.inode_type = FileType.directory
+		i.add_block()
+		d_inode = inode_number.inode_number_to_inode(directory)
+		d_block = inode_number.inode_number_to_block((d_inode.size - 1) * blockLayer._block_size, directory)
+		data = filename + "|" + str(inum) + ","
+		d_block.write(d_block.size, data, 0, len(data))
+		b_string = [""] * d_block.size
+		b_string = d_block.read(0, b_string, 0, d_block.size)
+
 
 
 # if __name__ == '__main__':

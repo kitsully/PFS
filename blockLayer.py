@@ -28,10 +28,8 @@ class Block(object):
             if(buf_i <= num_bytes): 
                 buf_i += 1
             else:
-                # self.size = i + 1
                 return 0  # success
-            i += 1
-        # self.size = i + 1       
+            i += 1    
         return 0  
 
     """Read from a specific location in a block into a buffer"""
@@ -86,7 +84,6 @@ def block_number_to_block(num):
         return device[num]
     else:
         raise Exception("Out of Range")
-
 
 
 
