@@ -12,9 +12,10 @@ import inode_number
 def createDict(data):
 	b = data.split(',')
 	dic = {}
-	for item in b:
-		part = item.split("|")
-		dic.update({part[0]:part[1]})
+	if (len(b) > 1):
+		for item in b:
+			part = item.split("|")
+			dic.update({part[0]:part[1]})
 	return dic
 
 def valid_filename(filename):
