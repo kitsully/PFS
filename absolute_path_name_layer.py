@@ -43,7 +43,6 @@ def general_path_to_inode_number(path):
 		return path_name_layer.path_to_inode_number(path, path_name_layer._wd)
 
 
-
 print "wd:", path_name_layer._wd
-test = general_path_to_inode_number("/dir/dir2")
+test = general_path_to_inode_number("/dir/dir2/dir3")
 print test
