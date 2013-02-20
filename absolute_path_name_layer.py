@@ -29,7 +29,7 @@ d_inode2 = path_name_layer.path_to_inode_number("Kris", d_inode)
 # Creates Docs directory
 file_name_layer.mkdir("Docs", d_inode2)
 d_inode_docs = path_name_layer.path_to_inode_number("Docs", d_inode2)
-file_name_layer.create_file("Doc_1", d_inode_pics) # I want to write to this file
+file_name_layer.create_file("Doc_1", d_inode_docs) # I want to write to this file
 
 # Creates Pics directory
 file_name_layer.mkdir("Pics", d_inode2)
