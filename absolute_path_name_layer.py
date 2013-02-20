@@ -30,6 +30,11 @@ d_inode2 = path_name_layer.path_to_inode_number("Kris", d_inode)
 file_name_layer.mkdir("Docs", d_inode2)
 d_inode_docs = path_name_layer.path_to_inode_number("Docs", d_inode2)
 file_name_layer.create_file("Doc_1", d_inode_docs) # I want to write to this file
+inum = path_name_layer.path_to_inode_number("Doc_1", d_inode_docs)
+i = inode_number.inode_number_to_inode(inum)
+block = blockLayer.block_number_to_block(i.blocks[0])
+s = "Testing 1... 2... 3... 4.... 5... 6.... 7...."
+block.write(0, s, 0, len(s))
 
 # Creates Pics directory
 file_name_layer.mkdir("Pics", d_inode2)
