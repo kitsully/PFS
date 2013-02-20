@@ -15,7 +15,6 @@ def createDict(data):
 	for item in b:
 		part = item.split("|")
 		dic.update({part[0]:part[1]})
-	# print "Dictionary in inode: ", dic
 	return dic
 
 def valid_filename(filename):
@@ -42,7 +41,7 @@ def inode_num(filename, b):
 	raise Exception("%s file is not in directory." % filename)
 
 
-def lookup(filename, directory):
+def lookup(filename, directory): # looks up a file in the specified directory and returns its inode number
 	if(valid_filename(filename) == 0):
 		i = inode_number.inode_number_to_inode(directory)
 		if (i.inode_type != FileType.directory):
@@ -61,7 +60,7 @@ def name_to_inode_number(filename, directory):
 	return lookup(filename, directory)
 
 
-def create_file(filename, directory):
+def create_file(filename, directory): # creates a file of regulary type
 	if(valid_filename(filename) == 0):
 		inum = inode_number.get_free_inode()
 		i = inode_number.inode_number_to_inode(inum)
@@ -74,7 +73,7 @@ def create_file(filename, directory):
 		b_string = [""] * d_block.size
 		b_string = d_block.read(0, b_string, 0, d_block.size)
 
-def mkdir(filename, directory):
+def mkdir(filename, directory): # creates a file of type directory
 		inum = inode_number.get_free_inode()
 		i = inode_number.inode_number_to_inode(inum)
 		i.inode_type = FileType.directory

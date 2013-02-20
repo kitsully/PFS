@@ -10,7 +10,7 @@ from fileLayer import INode, FileType
 import inode_number
 import file_name_layer
 
-global _wd
+global _wd # global variable to hold the working directory 
 _wd = 0
 
 def plain_name(path): # scans its argument for the UNIX path name separator (forward slash).
@@ -35,7 +35,7 @@ def path_to_inode_number(path, directory): # takes a path its inode number
 		path = rest(path)
 		return path_to_inode_number(path, directory)
 
-def chdir(path):
+def chdir(path): # changes the working directory 
 	global _wd
 	if (path == "/"):
 		global _wd

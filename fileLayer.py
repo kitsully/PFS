@@ -6,7 +6,7 @@
 
 import blockLayer
 
-_num_blocks_in_file = 100
+_num_blocks_in_file = 100 # the max number of blocks in a file
 
 class FileType(object):
     regular_file = 1
@@ -24,7 +24,7 @@ class INode(object):
         else:
             raise Exception("%r at %r not a valid index" % (self.blocks[index], index))	
 
-    def add_block(self):
+    def add_block(self): # this function is for adding a block for a inode
     	index = self.size
         self.blocks[index] = blockLayer.get_free_block()
         self.size += 1
