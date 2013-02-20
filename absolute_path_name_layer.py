@@ -14,24 +14,35 @@ from path_name_layer import _wd
 
 inode_number._inode_table[0].add_block()
 
-file_name_layer.mkdir("dir", 0)
-d_inode = path_name_layer.path_to_inode_number("dir", 0)
-file_name_layer.create_file("wooo", d_inode)
-file_name_layer.create_file("FUCKYES", d_inode)
-file_name_layer.mkdir("dir2", d_inode)
-d_inode2 = path_name_layer.path_to_inode_number("dir2", d_inode)
-file_name_layer.mkdir("dir3", d_inode2)
-d_inode3 = path_name_layer.path_to_inode_number("dir3", d_inode2)
+# Creates home directory and adds a few files
+file_name_layer.mkdir("Home", 0)
+d_inode = path_name_layer.path_to_inode_number("Home", 0)
+file_name_layer.create_file("test_1", d_inode)
+file_name_layer.create_file("test_2", d_inode)
+file_name_layer.create_file("test_3", d_inode)
+file_name_layer.create_file("test_4", d_inode)
 
+# Creates Kris directory
+file_name_layer.mkdir("Kris", d_inode)
+d_inode2 = path_name_layer.path_to_inode_number("Kris", d_inode)
 
-# path_name_layer.chdir("/")
-# print path_name_layer._wd
+# Creates Docs directory
+file_name_layer.mkdir("Docs", d_inode2)
+d_inode_docs = path_name_layer.path_to_inode_number("Docs", d_inode2)
+file_name_layer.create_file("Doc_1", d_inode_pics) # I want to write to this file
 
-# path_name_layer.chdir("/dir")
-# print path_name_layer._wd
+# Creates Pics directory
+file_name_layer.mkdir("Pics", d_inode2)
+d_inode_pics = path_name_layer.path_to_inode_number("Pics", d_inode2)
+file_name_layer.create_file("img_1", d_inode_pics)
+file_name_layer.create_file("img_2", d_inode_pics)
 
-# test = path_name_layer.chdir("/dir/dir2/dir3")
-# print test
+# Creates Music directory
+file_name_layer.mkdir("Music", d_inode2)
+d_inode_music = path_name_layer.path_to_inode_number("Music", d_inode2)
+file_name_layer.create_file("song_1", d_inode_music)
+file_name_layer.create_file("song_2", d_inode_music)
+
 
 
 def general_path_to_inode_number(path):
@@ -42,7 +53,3 @@ def general_path_to_inode_number(path):
 	else:
 		return path_name_layer.path_to_inode_number(path, path_name_layer._wd)
 
-
-# print "wd:", path_name_layer._wd
-# test = general_path_to_inode_number("/dir/dir2/dir3")
-# print test
