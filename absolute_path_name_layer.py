@@ -12,6 +12,7 @@ import file_name_layer
 import path_name_layer
 from path_name_layer import _wd
 
+#Creates the directories
 inode_number._inode_table[0].add_block()
 
 # Creates home directory and adds a few files
@@ -53,7 +54,6 @@ file_name_layer.mkdir("Empty", d_inode2)
 d_inode_music = path_name_layer.path_to_inode_number("Empty", d_inode2)
 
 
-
 def general_path_to_inode_number(path):
 	path.strip("/")
 	# print "path: ", path
@@ -61,4 +61,3 @@ def general_path_to_inode_number(path):
 		return path_name_layer.path_to_inode_number(path, 0)
 	else:
 		return path_name_layer.path_to_inode_number(path, path_name_layer._wd)
-
