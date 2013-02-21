@@ -16,22 +16,11 @@ class Block(object):
 
     """Write from a buffer to a specific location in a block"""
     def write(self, block_start, buff1, buffer_start, num_bytes):
-        buf_i = buffer_start 
-        for i in range(block_start, block_start + num_bytes): 
-            # checks if block can be written too
-            if(i < self.max_capacity):
-                self.blk[i] = buff1[buf_i]
-                # print "=========", self.size
-                self.size = i + 1
-            else:
-                raise Exception("Full text not written")
-            # Checks for index out of bound problem
-            if(buf_i <= num_bytes): 
-                buf_i += 1
-            else:
-                return 0  # success
-            i += 1    
-        return 0  
+        for i in range(block_start, block_start + num_bytes):
+            self.blk[i] = buff1[buffer_start]
+            if(buffer_start <= num_bytes):
+                buffer_start += 1
+            self.size = i + 1
 
     """Read from a specific location in a block into a buffer"""
     def read(self, block_start, buff1, buffer_start, num_bytes):
