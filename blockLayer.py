@@ -4,17 +4,17 @@
 
 # Block Layer
 
-_block_size = 512
-_device_size = 10000
+_block_size = 512 # the size of the block
+_device_size = 10000 # the size of the device
 _free_list = [0] * _device_size  # a list holding the status of the block free or used
 
 class Block(object):
     def __init__(self):
         self.size = 0
-        self.max_capacity = 512
-        self.blk = ['_'] * 512
+        self.max_capacity = _block_size
+        self.blk = ['_'] * _block_size
 
-    """Write from a buffer to a specific location in a block"""
+    #  Write from a buffer to a specific location in a block
     def write(self, block_start, buff1, buffer_start, num_bytes):
         for i in range(block_start, block_start + num_bytes):
             self.blk[i] = buff1[buffer_start]
@@ -22,28 +22,24 @@ class Block(object):
                 buffer_start += 1
             self.size = i + 1
 
-    """Read from a specific location in a block into a buffer"""
+    # Read from a specific location in a block into a buffer
     def read(self, block_start, buff1, buffer_start, num_bytes):
-        if ((block_start + num_bytes) > self.max_capacity):  # Checks to see if trying to read more than block can hold
+        if ((block_start + num_bytes) > self.max_capacity):  
             raise Exception("Attempting to read more bytes than in block") 
         for i in range(block_start, block_start + num_bytes):
             buff1[buffer_start] = self.blk[i]
             i += 1
             buffer_start += 1 
-        return buff1  # returns what has been read in from the block
+        return buff1  
 
-    """Returns the size of the block"""
-    def block_size(self):
-        return self.size
-
-    """Sets the max_capacity of the block"""
+    # Sets the max_capacity of the block
     def set_size(self, s):
         self.max_capacity = s
 
 def valid_block_number(num):
     return (0 <= num) and (num < _device_size)
 
-"""Finds a free block in the device Allocates a free block""" 
+# Finds a free block in the device Allocates a free block
 def get_free_block():
     for i in range(0, _device_size - 1): 
         if(_free_list[i] == 0): 
@@ -51,7 +47,7 @@ def get_free_block():
             return i
     raise Exception("No more free blocks in device.")
 
-
+# returns the max size of the block
 def get_block_size():
     return _block_size
 
@@ -68,7 +64,7 @@ def release_block(num):
 device = [Block() for i in range(_device_size - 1)]  # a device with 1000 blocks
 
 
-"""Returns the Block at this location in the device"""
+# Returns the Block at this location in the device 
 def block_number_to_block(num):
     if (0 <= num) and (num < _device_size):
         return device[num]
