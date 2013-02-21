@@ -21,6 +21,7 @@ class Block(object):
             # checks if block can be written too
             if(i < self.max_capacity):
                 self.blk[i] = buff1[buf_i]
+                # print "=========", self.size
                 self.size = i + 1
             else:
                 raise Exception("Full text not written")
