@@ -98,17 +98,10 @@ def rmdir(directory):
 	else:
 		raise Exception("Inode %r is not of type directory." % inum)
 	
-	
+def append():	
 
 
-	# print directory
-	# print "WD: ", path_name_layer._wd
-	# print "\nOther: \n", path_name_layer.path_to_inode_number(directory, path_name_layer._wd)
-	# if (path_name_layer.path_to_inode_number(directory, path_name_layer._wd) == path_name_layer._wd):
-	# 	print "---"	
 
-	# else:
-	# 	print "Cannot remove working directory."
 
 
 
