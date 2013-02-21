@@ -14,7 +14,6 @@ import absolute_path_name_layer
 
 
 def ls(): # lists the contents of the working directory
-	# print "*****", path_name_layer._wd
 	b = inode_number.inode_number_to_block((inode_number.inode_number_to_inode(path_name_layer._wd)).size, path_name_layer._wd)
 	buf = [''] * b.size
 	buf = b.read(0, buf, 0, b.size - 1)
@@ -101,73 +100,24 @@ def rmdir(directory):
 def append(filename, writer):	
 	inum = file_name_layer.lookup(filename, path_name_layer._wd)
 	i = inode_number.inode_number_to_inode(inum)
-	if(i.size == 0):
-		bnum = i.add_block()
-		block = blockLayer.block_number_to_block(bnum)
-		b_start = 0 
-		buf = list(writer)
-		while (b_start < len(buf)):
-			while (block.size < block.max_capacity):
-				block.write(block.size - 1, buf[b_start], 0, 1)
-				b_start += 1
-			if(b_start < len(buf)):
-				bnum = i.add_block()
-				bnum = i.blocks[i.size - 1]
-				block = blockLayer.block_number_to_block(bnum)
-	else:
-		bnum = i.blocks[i.size - 1]
-		block = blockLayer.block_number_to_block(bnum)
-		if (block.size == 512):
-			bnum = i.blocks[i.size - 1]
-			block = blockLayer.block_number_to_block(bnum)
+	bnum = i.blocks[i.size - 1]
+	blk = blockLayer.block_number_to_block(bnum)
+	buf = list(writer)
+	b_start = 0
+	while (b_start < len(buf)):
+		while (blk.size < blockLayer._block_size):
+			if(b_start == len(writer)):
+				return 0
+			print blk.blk[:512]	
+			buf_string = "".join(buf[b_start])
+			blk.write(blk.size, buf_string, 0, 1)
+			b_start += 1
+		if(b_start < len(buf)):
 			bnum = i.add_block()
-			b_start = 0 
-			buf = list(writer)
-			while (b_start < len(buf)):
-				while (block.size < block.max_capacity):
-					block.write(block.size - 1, buf[b_start], 0, 1)
-					b_start += 1
-				if(b_start < len(buf)):
-					bnum = i.add_block()
-					bnum = i.blocks[i.size - 1]
-					block = blockLayer.block_number_to_block(bnum)	
-		else:
-			b_start = 0 
-			buf = list(writer)
-			while (b_start < len(buf)):
-				print "b_start", b_start
-				print "buf[0]", buf[0]
-				print "size:", block.size - 1
-				while (block.size < block.max_capacity):
-					# print "size:", block.size - 1
-					block.write(block.size - 1, buf[b_start], 0, 1)
-					b_start += 1
-				if(b_start < len(buf)):
-					bnum = i.add_block()
-					bnum = i.blocks[i.size - 1]
-					block = blockLayer.block_number_to_block(bnum)
-
-					
-			# block.write(block.size - 1)				
+			blk = blockLayer.block_number_to_block(bnum)
 
 
 
-
-
-	# for b in i.blocks:
-
-
-
-	# inode table how many blocks are in there
-	# check to see if first index is -1
-	# find last block w/o -1
-	# find that block size (if first index is -1 we need to add a block)
-	# start writing at block size with buffer at zero
-		# make sure we don't  hit 512
-			# if we do
-				# stop writing 
-				# make a new block
-				# write from where we left off (buffer start)
 
 
 
