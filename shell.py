@@ -14,6 +14,7 @@ import absolute_path_name_layer
 
 
 def ls(): # lists the contents of the working directory
+	# print "*****", path_name_layer._wd
 	b = inode_number.inode_number_to_block((inode_number.inode_number_to_inode(path_name_layer._wd)).size, path_name_layer._wd)
 	buf = [''] * b.size
 	buf = b.read(0, buf, 0, b.size - 1)
@@ -26,6 +27,7 @@ def ls(): # lists the contents of the working directory
 		print "Empty Directory"
 
 def mkdir(directory): # creates a directory in the working directory
+	print directory
 	file_name_layer.mkdir(directory, path_name_layer._wd)
 
 
@@ -75,7 +77,38 @@ def rm(filename): # removes a file from a working directory
 		block_directory.size = 0
 	
 
+def rmdir(directory):
+	inum = file_name_layer.lookup(directory, path_name_layer._wd)
+	i = inode_number.inode_number_to_inode(inum)
+	if (i.inode_type == FileType.directory):
+		blockLayer.release_block(i.blocks[0])
+		inode_number.release_inode(inum)
+		inode_directory = inode_number.inode_number_to_inode(path_name_layer._wd)
+		block_directory = blockLayer.block_number_to_block(inode_directory.blocks[0])
+		buf = [""] * block_directory.size
+		buf = block_directory.read(0, buf, 0, block_directory.size)
+		buf = "".join(buf)
+		search = directory + "|" + str(inum) + ","
+		buf = buf.replace(search, "")
+ 		clear = "_" * 512
+ 		block_directory.write(0, clear, 0, len(clear))
+		block_directory.write(0, buf, 0, len(buf))
+		if(len(buf) == 0): # checks to see if the directory is now empty
+			block_directory.size = 0
+	else:
+		raise Exception("Inode %r is not of type directory." % inum)
+	
+	
 
+
+	# print directory
+	# print "WD: ", path_name_layer._wd
+	# print "\nOther: \n", path_name_layer.path_to_inode_number(directory, path_name_layer._wd)
+	# if (path_name_layer.path_to_inode_number(directory, path_name_layer._wd) == path_name_layer._wd):
+	# 	print "---"	
+
+	# else:
+	# 	print "Cannot remove working directory."
 
 
 
@@ -86,8 +119,12 @@ def rm(filename): # removes a file from a working directory
 # ls()
 # print "----"
 # cd("/Home/Kris/Music")
-cd("/Home/Kris/Docs")
-rm("Doc_1")
+# ls()
+cd("/Home/Kris")
+ls()
+#print path_name_layer._wd
+print ""
+rmdir("Empty")
 ls()
 #cat("Doc_1")
 # ls()

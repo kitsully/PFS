@@ -28,22 +28,28 @@ def rest(path): # returns the remainder of the path name
 	return loc[1]
 
 def path_to_inode_number(path, directory): # takes a path its inode number
+	# print "llllllllllll", path
 	if (plain_name(path)):
+		# print "***********************()"
 		return file_name_layer.name_to_inode_number(path, directory)
 	else:
+		# print "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 		directory = file_name_layer.lookup(first(path), directory)
 		path = rest(path)
 		return path_to_inode_number(path, directory)
 
 def chdir(path): # changes the working directory 
 	global _wd
+	# print "path :", path
 	if (path == "/"):
 		global _wd
 		_wd = 0
 		return 1 #success
 	elif(path[0] == "/"):
+		# print "&&&&&&&&"
 		global _wd
 		_wd = path_to_inode_number(path[1:], 0)
+		# print "::::::::::::::::::", path[1:]
 		return 1
 	global _wd 
 	_wd = path_to_inode_number(path, _wd)
