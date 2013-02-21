@@ -56,7 +56,6 @@ d_inode_music = path_name_layer.path_to_inode_number("Empty", d_inode2)
 
 def general_path_to_inode_number(path):
 	path.strip("/")
-	# print "path: ", path
 	if (path[0] == "/"):
 		return path_name_layer.path_to_inode_number(path, 0)
 	else:

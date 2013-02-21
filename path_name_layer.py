@@ -65,4 +65,3 @@ def chdir(path):
     # i.inode_type = FileType.directory
     # p = "right/wrong/left"
     # test 
-
