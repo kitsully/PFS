@@ -4,9 +4,10 @@
 
 # Block Layer
 
-_block_size = 512 # the size of the block
-_device_size = 10000 # the size of the device
+_block_size = 512  # the size of the block
+_device_size = 10000  # the size of the device
 _free_list = [0] * _device_size  # a list holding the status of the block free or used
+
 
 class Block(object):
     def __init__(self):
@@ -36,8 +37,11 @@ class Block(object):
     def set_size(self, s):
         self.max_capacity = s
 
+
+# checks to see if the block number is valid
 def valid_block_number(num):
     return (0 <= num) and (num < _device_size)
+
 
 # Finds a free block in the device Allocates a free block
 def get_free_block():
@@ -47,12 +51,13 @@ def get_free_block():
             return i
     raise Exception("No more free blocks in device.")
 
+
 # returns the max size of the block
 def get_block_size():
     return _block_size
 
 
-"""Sets a blocks status to free"""
+# Sets a blocks status to free
 def release_block(num):
     if valid_block_number(num):
         if(_free_list[num] == 0):  # checks if free
@@ -60,8 +65,8 @@ def release_block(num):
         else: 
             _free_list[num] = 0  # Changes Block status to free 
 
-
-device = [Block() for i in range(_device_size - 1)]  # a device with 1000 blocks
+# creates a device with 1000 blocks
+device = [Block() for i in range(_device_size - 1)]  
 
 
 # Returns the Block at this location in the device 
@@ -70,7 +75,6 @@ def block_number_to_block(num):
         return device[num]
     else:
         raise Exception("Out of Range")
-
 
 
 # if __name__ == '__main__':
