@@ -132,17 +132,17 @@ def append(filename, writer):
 # print "----"
 # cd("/Home/Kris/Music")
 # ls()
-cd("/Home/Kris/Docs")
+cd("/Home/Kris")
 s = "9" * 1000
-append("Doc_1", s)
+#append("Doc_1", s)
 
 
 
 ls()
 # print path_name_layer._wd
-# print ""
-# rmdir("Empty")
-# ls()
+print ""
+rmdir("Empty")
+ls()
 # cat("Doc_1")
 # ls()
  
