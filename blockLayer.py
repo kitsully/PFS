@@ -5,8 +5,8 @@
 # Block Layer
 
 _block_size = 512
-device_size = 10000
-free_list = [0] * device_size  # a list holding the status of the block free or used
+_device_size = 10000
+_free_list = [0] * _device_size  # a list holding the status of the block free or used
 
 class Block(object):
     def __init__(self):
@@ -41,13 +41,13 @@ class Block(object):
         self.max_capacity = s
 
 def valid_block_number(num):
-    return (0 <= num) and (num < device_size)
+    return (0 <= num) and (num < _device_size)
 
 """Finds a free block in the device Allocates a free block""" 
 def get_free_block():
-    for i in range(0, device_size - 1): 
-        if(free_list[i] == 0): 
-            free_list[i] = 1  # Block No Longer Free 
+    for i in range(0, _device_size - 1): 
+        if(_free_list[i] == 0): 
+            _free_list[i] = 1  # Block No Longer Free 
             return i
     raise Exception("No more free blocks in device.")
 
@@ -59,18 +59,18 @@ def get_block_size():
 """Sets a blocks status to free"""
 def release_block(num):
     if valid_block_number(num):
-        if(free_list[num] == 0):  # checks if free
+        if(_free_list[num] == 0):  # checks if free
             print "Already Free"
         else: 
-            free_list[num] = 0  # Changes Block status to free 
+            _free_list[num] = 0  # Changes Block status to free 
 
 
-device = [Block() for i in range(device_size - 1)]  # a device with 1000 blocks
+device = [Block() for i in range(_device_size - 1)]  # a device with 1000 blocks
 
 
 """Returns the Block at this location in the device"""
 def block_number_to_block(num):
-    if (0 <= num) and (num < device_size):
+    if (0 <= num) and (num < _device_size):
         return device[num]
     else:
         raise Exception("Out of Range")
@@ -84,7 +84,7 @@ def block_number_to_block(num):
     # get_free_block()
 
     # print "----------"
-    # print "Free blocks", free_list[:100]
+    # print "Free blocks", _free_list[:100]
     # block_num = get_free_block()
     # b = block_number_to_block(block_num)
 
